@@ -1,3 +1,5 @@
+import com.eaio.stringsearch.*;
+
 /**
  * This is the entry point for Part 2, Coverage-enhanced tests.
  */
@@ -7,6 +9,6 @@ public class CoverageTests {
         FunctionalTests.main(args);
 
         // Start adding additional tests here, below this line.
-
     }
+
 }
