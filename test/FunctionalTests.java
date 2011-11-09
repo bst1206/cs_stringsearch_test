@@ -33,6 +33,8 @@ public class FunctionalTests {
         test19();
         test20();
         test21();
+        test22();
+        test23();
 
 
         System.out.println("Tests completed successfully.");
@@ -448,11 +450,49 @@ public class FunctionalTests {
         //  - a non-null string
         //  - the pattern is length 5 ( much less then length 10) and only contain 2 mismatches. So it should find with mismatch.
 
-        StringSearch ss = new ShiftOrMismatches();
-        String pattern = "mas";
-        String str = "mismatchingthisstring";
+        ShiftOrMismatches ss = new ShiftOrMismatches();
+        String pattern = "mitcs";
+        String str = "mis match thisstring";
 
-        int location = ss.searchString(str, pattern);
-        Assert.assertEquals(0, location);
+        int[] location = ss.searchString(str, pattern, 2);
+        Assert.assertEquals(4, location[0]);
+        Assert.assertEquals(2, location[1]);
+    }
+
+    static void test22() {
+        // Technique uesd: Equivalence Partitioning
+
+        // This test case represents the equivalence class of test inputs
+        // to the ShiftOrMismatches implementation of StringSearch.searchString that contain:
+
+        //  - a non-null pattern
+        //  - a non-null string
+        //  - the pattern is length 5 ( much less then length 10) and contain 4 mismatches. So it should output an unexpected result.
+
+        ShiftOrMismatches ss = new ShiftOrMismatches();
+        String pattern = "mtahc";
+        String str = "mis match thisstring";
+
+        int[] location = ss.searchString(str, pattern, 4);
+        Assert.assertIsTrue((4 != location[0]), "location[0] is same as 4");
+        Assert.assertIsTrue((2 != location[1]), "location[1] is same as 2");
+    }
+    static void test23() {
+        // Technique uesd: Equivalence Partitioning
+
+        // This test case represents the equivalence class of test inputs
+        // to the ShiftOrMismatches implementation of StringSearch.searchString that contain:
+
+        //  - a non-null pattern
+        //  - a non-null string
+        //  - the pattern is all mismatches
+
+        ShiftOrMismatches ss = new ShiftOrMismatches();
+        String pattern = "random";
+        String str = "mis match thisstring";
+
+        int[] location = ss.searchString(str, pattern, 4);
+        Assert.assertIsTrue((4 != location[0]), "location[0] is same as 4");
+        Assert.assertIsTrue((2 != location[1]), "location[1] is same as 2");
     }
 }
